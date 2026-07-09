@@ -1,0 +1,31 @@
+{
+  "households": [
+    {
+      "id": "demo-household-alpha",
+      "name": "Demo Household",
+      "members": [
+        { "id": "demo-user-alex", "displayName": "Alex", "role": "owner" },
+        { "id": "demo-user-jamie", "displayName": "Jamie", "role": "editor" }
+      ]
+    }
+  ],
+  "transactions": [
+    { "date": "2026-06-02", "owner": "shared", "category": "groceries", "description": "Weekly groceries", "amount": 84320 },
+    { "date": "2026-06-03", "owner": "alex", "category": "transport", "description": "Transit card top-up", "amount": 55000 },
+    { "date": "2026-06-05", "owner": "shared", "category": "housing", "description": "Utility bill", "amount": 132400 },
+    { "date": "2026-06-10", "owner": "jamie", "category": "healthcare", "description": "Clinic visit", "amount": 26700 },
+    { "date": "2026-06-25", "owner": "alex", "category": "salary", "description": "Monthly salary", "amount": 4200000, "type": "income" }
+  ],
+  "purposeAccounts": [
+    { "name": "Emergency Fund", "target": 5000000, "balance": 1800000 },
+    { "name": "Travel", "target": 2000000, "balance": 650000 }
+  ],
+  "assets": [
+    { "month": "2026-06", "owner": "shared", "type": "cash", "name": "Main checking", "balance": 2300000 },
+    { "month": "2026-06", "owner": "alex", "type": "savings", "name": "Savings", "balance": 8200000 }
+  ],
+  "recurring": [
+    { "name": "Rent", "category": "housing", "amount": 1200000, "status": "active" },
+    { "name": "Streaming", "category": "subscriptions", "amount": 17000, "status": "active" }
+  ]
+}
