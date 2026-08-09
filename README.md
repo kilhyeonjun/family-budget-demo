@@ -107,7 +107,7 @@ This is a **demo-only** repository. The following are intentionally excluded:
 ## 📝 Testing Strategy
 
 Built with **Test-Driven Development (TDD)**:
-- ✅ 24 passing tests across 5 test suites
+- ✅ 26 passing tests across 6 test suites
 - ✅ Service layer unit tests
 - ✅ Component rendering tests
 - ✅ User interaction tests
