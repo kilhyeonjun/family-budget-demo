@@ -57,9 +57,9 @@ export default function DashboardView({
       <Card className="p-6 mb-6">
         <h2 className="text-xl font-bold mb-4">Recent Transactions</h2>
         <div className="space-y-3">
-          {recentTransactions.map((tx) => (
+          {recentTransactions.map((tx, index) => (
             <div
-              key={tx.id}
+              key={tx.id ?? `${tx.date}-${tx.owner}-${tx.description}-${index}`}
               className="flex justify-between items-center border-b pb-3 last:border-b-0"
             >
               <div>
