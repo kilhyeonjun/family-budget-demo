@@ -1,40 +1,125 @@
 # Family Budget Demo
 
-Public portfolio scaffold for a family budget web product.
+Public portfolio demo of a family budget management web application.
 
-This repository intentionally contains **demo-only data and planning docs**. The real operating app lives in a separate private repository.
+## 🎯 Purpose
 
-## What this demo will show
+This repository demonstrates a mobile-first family budget tracking system with:
+- **Dashboard** with income/expense summary and recent transactions
+- **Ledger** showing complete transaction history
+- **Add Transaction** form for recording new income/expenses
+- Demo data for portfolio presentation (no real family data)
 
-- Mobile-first daily expense input
-- Household dashboard
-- Card-first transaction ledger
-- Settings/source-of-truth management view
-- Future Supabase Auth signup/login
-- Future multi-tenant household isolation
+## 🚀 Tech Stack
 
-## What is intentionally not included
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4 + HeroUI 3
+- **Testing**: Vitest + Testing Library
+- **Data**: JSON seed data (demo mode)
 
-- Real family finance data
-- Real Google Sheet IDs
-- Real Supabase/Postgres URLs or credentials
-- PIN auth secrets
-- Private operations scripts
-- Production deployment topology
+## 📦 Installation
 
-## Demo data
-
-See:
-
-```txt
-demo/seed-data.json
+```bash
+npm install
 ```
 
-## Productization plan
+## 🏃 Development
 
-- `docs/portfolio-demo-plan.md`
-- `docs/auth-multitenant-plan.md`
+```bash
+npm run dev
+```
 
-## Status
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-Scaffold only. Full public demo implementation will be built from this safe boundary.
+## 🧪 Testing
+
+```bash
+# Run tests
+npm test
+
+# Watch mode
+npm run test:watch
+```
+
+## 🏗️ Build
+
+```bash
+npm run build
+npm start
+```
+
+## 📁 Project Structure
+
+```
+├── app/                    # Next.js App Router pages
+│   ├── page.tsx           # Dashboard (/)
+│   ├── add/page.tsx       # Add Transaction (/add)
+│   ├── ledger/page.tsx    # Transaction Ledger (/ledger)
+│   └── layout.tsx         # Root layout
+├── components/            # React components
+│   ├── DashboardView.tsx
+│   ├── LedgerView.tsx
+│   └── AddTransactionForm.tsx
+├── lib/                   # Business logic
+│   ├── types.ts          # TypeScript types
+│   ├── budget-service.ts # Budget calculations
+│   └── data-loader.ts    # Seed data loader
+├── demo/                  # Demo seed data
+│   └── seed-data.json
+└── docs/                  # Planning documents
+    ├── portfolio-demo-plan.md
+    └── auth-multitenant-plan.md
+```
+
+## 🎨 Features
+
+### Dashboard
+- Monthly income/expense/balance summary
+- Recent transactions preview
+- Quick navigation to add transaction and ledger
+
+### Ledger
+- Complete transaction history
+- Sorted by date (newest first)
+- Category, owner, and amount display
+
+### Add Transaction
+- Form for recording new transactions
+- Income/Expense type selection
+- Category and owner assignment
+- Date picker
+
+## 🔒 What's NOT Included
+
+This is a **demo-only** repository. The following are intentionally excluded:
+
+- Real family financial data
+- Production database credentials
+- Google Sheets integration details
+- PIN authentication secrets
+- Private operational scripts
+- Production deployment topology
+
+## 📝 Testing Strategy
+
+Built with **Test-Driven Development (TDD)**:
+- ✅ 24 passing tests across 5 test suites
+- ✅ Service layer unit tests
+- ✅ Component rendering tests
+- ✅ User interaction tests
+- ✅ Data loading tests
+
+## 🚢 Deployment
+
+This demo is deployed on Vercel. The production build is automatically generated from the `main` branch.
+
+## 📄 License
+
+This is a public portfolio demonstration project.
+
+## 👤 Author
+
+Hyeonjun Gil (kilhyeonjun)
+
+Portfolio: [kilpenguin.com](https://kilpenguin.com)

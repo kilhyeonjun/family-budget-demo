@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Synthetic household-budget read/write demo">
+  <title>Family Budget Demo</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header>
+    <div><strong>Family Budget</strong><span class="demo">Synthetic demo</span></div>
+    <button id="reset" type="button">Reset demo</button>
+  </header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">DEMO HOUSEHOLD · JUNE 2026</p>
+      <h1>Shared money, one clear view.</h1>
+      <p>No real family data, accounts, credentials, or external services.</p>
+    </section>
+    <section class="summary" aria-label="Monthly summary">
+      <article><span>Income</span><strong id="income">—</strong></article>
+      <article><span>Expense</span><strong id="expense">—</strong></article>
+      <article><span>Balance</span><strong id="balance">—</strong></article>
+    </section>
+    <section class="workspace">
+      <article class="panel">
+        <h2>Add transaction</h2>
+        <form id="transaction-form">
+          <label>Date<input name="date" type="date" value="2026-06-28" required></label>
+          <label>Description<input name="description" maxlength="40" placeholder="Household item" required></label>
+          <label>Category<select name="category"><option>groceries</option><option>transport</option><option>healthcare</option><option>housing</option><option>subscriptions</option></select></label>
+          <label>Amount<input name="amount" type="number" min="1" step="1" required></label>
+          <button type="submit">Add expense</button>
+        </form>
+        <p id="status" role="status" aria-live="polite"></p>
+      </article>
+      <article class="panel ledger-panel">
+        <div class="panel-head"><div><p class="eyebrow">LEDGER</p><h2>Recent activity</h2></div><span id="count"></span></div>
+        <div id="ledger" class="ledger"></div>
+      </article>
+    </section>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
