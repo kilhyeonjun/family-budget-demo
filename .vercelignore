@@ -1,0 +1,20 @@
+# Build
+node_modules
+.next
+out
+build
+dist
+
+# Testing
+coverage
+.nyc_output
+
+# Misc
+.DS_Store
+*.pem
+
+# Environment
+.env*.local
+
+# Vercel
+.vercel
