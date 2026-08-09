@@ -8,6 +8,8 @@ This repository demonstrates a mobile-first family budget tracking system with:
 - **Dashboard** with income/expense summary and recent transactions
 - **Ledger** showing complete transaction history
 - **Add Transaction** form for recording new income/expenses
+- **Browser-local persistence** so submitted synthetic entries appear on Dashboard and Ledger
+- **Reset demo** control that restores the tracked synthetic seed
 - Demo data for portfolio presentation (no real family data)
 
 ## 🚀 Tech Stack
@@ -89,6 +91,7 @@ npm start
 - Income/Expense type selection
 - Category and owner assignment
 - Date picker
+- Saves only to this browser's local storage; no network write or production database
 
 ## 🔒 What's NOT Included
 
@@ -104,7 +107,7 @@ This is a **demo-only** repository. The following are intentionally excluded:
 ## 📝 Testing Strategy
 
 Built with **Test-Driven Development (TDD)**:
-- ✅ 24 passing tests across 5 test suites
+- ✅ 26 passing tests across 6 test suites
 - ✅ Service layer unit tests
 - ✅ Component rendering tests
 - ✅ User interaction tests
@@ -112,7 +115,7 @@ Built with **Test-Driven Development (TDD)**:
 
 ## 🚢 Deployment
 
-This demo is deployed on Vercel. The production build is automatically generated from the `main` branch.
+The repository is deployment-ready for Vercel. Public Production URL remains unverified until provider deployment evidence and live browser read-back are available.
 
 ## 📄 License
 

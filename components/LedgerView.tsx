@@ -29,9 +29,9 @@ export default function LedgerView({ transactions }: LedgerViewProps) {
 
       <Card className="p-6">
         <div className="space-y-4">
-          {transactions.map((tx) => (
+          {transactions.map((tx, index) => (
             <div
-              key={tx.id}
+              key={tx.id ?? `${tx.date}-${tx.owner}-${tx.description}-${index}`}
               className="flex justify-between items-start border-b pb-4 last:border-b-0"
             >
               <div className="flex-1">

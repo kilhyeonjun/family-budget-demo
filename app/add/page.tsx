@@ -2,17 +2,15 @@
 
 import { useRouter } from 'next/navigation';
 import AddTransactionForm from '@/components/AddTransactionForm';
-import type { Transaction } from '@/lib/types';
+import seed from '@/demo/seed-data.json';
+import { appendDemoTransaction, readDemoData, writeDemoData } from '@/lib/demo-storage';
+import type { BudgetData, Transaction } from '@/lib/types';
 
 export default function AddTransactionPage() {
   const router = useRouter();
 
   const handleSubmit = async (transaction: Omit<Transaction, 'id'>) => {
-    // In a real app, this would POST to an API route
-    // For demo purposes, we'll just redirect back to dashboard
-    console.log('Transaction submitted:', transaction);
-    
-    // Redirect to dashboard
+    writeDemoData(appendDemoTransaction(readDemoData(seed as BudgetData), transaction));
     router.push('/');
   };
 
