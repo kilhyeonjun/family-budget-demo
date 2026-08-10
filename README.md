@@ -115,7 +115,9 @@ Built with **Test-Driven Development (TDD)**:
 
 ## 🚢 Deployment
 
-The repository is deployment-ready for Vercel. Public Production URL remains unverified until provider deployment evidence and live browser read-back are available.
+Production: [family-budget-demo-three.vercel.app](https://family-budget-demo-three.vercel.app)
+
+The deployed app uses synthetic seed data and browser-local storage only. No external database write is performed.
 
 ## 📄 License
 
