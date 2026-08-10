@@ -29,9 +29,27 @@ describe('V4DemoApp', () => {
     expect(screen.getByText('합성 지출')).toBeDefined();
   });
 
+  it('renders the canonical v4 decision surfaces and editable ledger table', () => {
+    const { rerender } = render(<V4DemoApp seed={demoSeed} />);
+    expect(screen.getByRole('heading', { name: '최근 내역' })).toBeDefined();
+    expect(screen.getByText('Monthly salary')).toBeDefined();
+
+    rerender(<V4DemoApp seed={demoSeed} screen="dashboard" />);
+    expect(screen.getByRole('heading', { name: '이번 달 판단과 할 일' })).toBeDefined();
+    expect(screen.getByText('카테고리별 지출')).toBeDefined();
+    expect(screen.getByText('월 마감 체크')).toBeDefined();
+    expect(screen.getByText(/예상 잔액/)).toBeDefined();
+
+    rerender(<V4DemoApp seed={demoSeed} screen="ledger" />);
+    expect(screen.getByRole('table', { name: '거래원장 편집 표' })).toBeDefined();
+    expect(screen.getAllByRole('columnheader').map((cell: HTMLElement) => cell.textContent)).toEqual(['날짜', '내용', '분류', '소유자', '금액', '관리']);
+    expect(screen.getByRole('link', { name: '행 추가' }).getAttribute('href')).toBe('/');
+    expect(screen.getByRole('button', { name: '변경사항 저장' })).toBeDefined();
+  });
+
   it('deletes only the selected seeded transaction', () => {
     render(<V4DemoApp seed={demoSeed} screen="ledger" />);
-    fireEvent.click(screen.getByText('Weekly groceries').closest('.ledger-row')!.querySelector('button')!);
+    fireEvent.click(screen.getByText('Weekly groceries').closest('tr')!.querySelector('button')!);
     expect(screen.queryByText('Weekly groceries')).toBeNull();
     expect(screen.getByText('Transit card top-up')).toBeDefined();
   });
