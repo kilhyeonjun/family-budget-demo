@@ -44,7 +44,10 @@ describe('V4DemoApp', () => {
     expect(screen.getByRole('table', { name: '거래원장 편집 표' })).toBeDefined();
     expect(screen.getAllByRole('columnheader').map((cell: HTMLElement) => cell.textContent)).toEqual(['날짜', '내용', '분류', '소유자', '금액', '관리']);
     expect(screen.getByRole('link', { name: '행 추가' }).getAttribute('href')).toBe('/');
-    expect(screen.getByRole('button', { name: '변경사항 저장' })).toBeDefined();
+    const save = screen.getByRole('button', { name: '변경사항 저장' });
+    expect(save.getAttribute('disabled')).toBeNull();
+    fireEvent.click(save);
+    expect(screen.getByRole('status').textContent).toBe('브라우저에 저장됨');
   });
 
   it('deletes only the selected seeded transaction', () => {
