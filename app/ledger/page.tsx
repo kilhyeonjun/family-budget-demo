@@ -1,7 +1,6 @@
 import { loadSeedData } from '@/lib/data-loader';
-import DemoLedgerApp from '@/components/DemoLedgerApp';
+import V4DemoApp from '@/components/V4DemoApp';
 
 export default async function LedgerPage() {
-  const data = await loadSeedData();
-  return <DemoLedgerApp seed={data} />;
+  return <V4DemoApp seed={await loadSeedData()} screen="ledger" />;
 }
