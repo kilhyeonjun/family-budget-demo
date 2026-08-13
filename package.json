@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint app components lib",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "verify:ssot": "node scripts/verify-ssot.mjs",
+    "scan:public-boundary": "node scripts/scan-public-boundary.mjs",
+    "check:public-ssot": "node scripts/check-public-ssot.test.mjs"
   },
   "dependencies": {
     "@heroui/react": "3.2.4",
