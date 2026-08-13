@@ -6,6 +6,7 @@ import { EntityTable } from './entity-table';
 import { RecurringRuleManager } from './recurring-rule-manager';
 import { planEntitySave, type EntityRow } from '@/lib/v4/entity-save';
 import { ENTITY_SPECS, type EntityKind, type EntityOptions } from '@/lib/v4/entity-config';
+import { apiBridge } from '@/lib/synthetic-budget';
 
 type Row = EntityRow;
 
@@ -97,7 +98,7 @@ export function EntityGrid({ kind, month, options, initialRows, gridHeight = 480
       setDeleteIds(new Set(nextDeleteIds));
     };
     const request = async <T,>(input: RequestInfo | URL, init: RequestInit): Promise<T> => {
-      const response = await fetch(input, init);
+      const response = await apiBridge(input, init);
       const body = await response.json().catch(() => ({})) as T & { error?: string; message?: string };
       if (!response.ok) throw new Error(body.error || body.message || '저장 요청에 실패했어요.');
       return body;

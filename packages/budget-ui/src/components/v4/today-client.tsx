@@ -21,7 +21,7 @@ export function TodayClient({ month, owner, settings, initialRows }: {
       <div className="grid gap-2 lg:sticky lg:top-20">
         <div className="flex items-center justify-between gap-3">
           <p className="text-sm font-bold text-[var(--fbv4-secondary)]">최근 내역</p>
-          <a href={`/v4/ledger?month=${encodeURIComponent(month)}&owner=${encodeURIComponent(owner)}`} className="inline-flex h-11 items-center text-sm font-bold text-[var(--fbv4-accent)] hover:underline">원장 전체보기</a>
+          <a href={`/ledger?month=${encodeURIComponent(month)}&owner=${encodeURIComponent(owner)}`} className="inline-flex h-11 items-center text-sm font-bold text-[var(--fbv4-accent)] hover:underline">원장 전체보기</a>
         </div>
         <RecentList rows={rows} />
       </div>

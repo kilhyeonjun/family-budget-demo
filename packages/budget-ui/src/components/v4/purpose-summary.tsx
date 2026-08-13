@@ -1,4 +1,4 @@
-import type { PurposeAccountRow } from '@/lib/v4/purpose-data';
+import type { PurposeAccountRow } from '../../contracts';
 
 function won(v: number) { return `${v.toLocaleString('ko-KR')}원`; }
 

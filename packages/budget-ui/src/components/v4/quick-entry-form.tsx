@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { buildQuickPayload, type QuickKind } from '@/lib/v4/quick-entry';
 import { dateForSelectedMonth } from '@/lib/local-date';
+import { apiBridge } from '@/lib/synthetic-budget';
 
 type Settings = { categories?: string[]; purposeAccounts?: string[]; paymentMethods?: string[]; budgetTreatments?: string[] };
 type SubmitResult = { ok: boolean; row?: Record<string, unknown>; error?: string };
@@ -43,9 +44,9 @@ export function QuickEntryForm({ month, owner, settings, onSaved }: {
     if (!built.ok) { setError(built.error); return; }
     setSaving(true); setError('');
     try {
-      const res = await fetch('/api/transactions', {
+      const res = await apiBridge('/api/transactions', {
         method: 'POST', headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ ...built.payload, profile_id: 'couple-shared' }),
+        body: JSON.stringify(built.payload),
       });
       const body: SubmitResult = await res.json().catch(() => ({ ok: false }));
       if (!res.ok || !body.row) throw new Error(body.error || '저장하지 못했어요. 입력은 그대로 있어요.');

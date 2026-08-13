@@ -1,4 +1,4 @@
-import type { MonthlySummary } from '@/lib/v4/dashboard-data';
+import type { MonthlySummary } from '../../contracts';
 
 function won(n: number) { return new Intl.NumberFormat('ko-KR').format(Math.round(n)); }
 

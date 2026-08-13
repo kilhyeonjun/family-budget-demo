@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import '@/packages/budget-ui/src/v4-theme.css';
+import { DemoShell } from '@/components/DemoShell';
 
 export const metadata: Metadata = {
   title: 'Family Budget Demo',
@@ -14,9 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="antialiased bg-gray-50 text-gray-900">
-        {children}
-      </body>
+      <body><DemoShell>{children}</DemoShell></body>
     </html>
   );
 }

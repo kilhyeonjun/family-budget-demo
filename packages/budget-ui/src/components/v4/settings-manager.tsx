@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { apiBridge } from '@/lib/synthetic-budget';
 
 type Item = { id: string | null; label: string; sortOrder: number; editable: boolean; source: string };
 type Group = { key: string; title: string; writeKind: string; items: Item[] };
@@ -20,7 +21,7 @@ export function SettingsManager({ groups: initial }: { groups: Group[] }) {
   const group = groups.find(g => g.key === selected);
 
   async function reload() {
-    const r = await fetch('/api/settings').then(res => res.json()).catch(() => null);
+    const r = await apiBridge('/api/settings').then(res => res.json()).catch(() => null);
     if (r?.settingGroups) setGroups(r.settingGroups);
   }
 
@@ -45,19 +46,19 @@ export function SettingsManager({ groups: initial }: { groups: Group[] }) {
   async function add() {
     const label = draft.trim();
     if (!label || !group) return;
-    const ok = await run(() => fetch('/api/settings', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ groupKey: group.key, label }) }));
+    const ok = await run(() => apiBridge('/api/settings', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ groupKey: group.key, label }) }));
     if (ok) setDraft('');
   }
   async function saveEdit() {
     if (!editing) return;
     const label = editing.label.trim();
     if (!label) return;
-    const ok = await run(() => fetch('/api/settings', { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ id: editing.id, label }) }));
+    const ok = await run(() => apiBridge('/api/settings', { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ groupKey: group?.key, id: editing.id, label }) }));
     if (ok) setEditing(null);
   }
   async function remove(id: string) {
     if (pendingDelete !== id) { setPendingDelete(id); return; }
-    const ok = await run(() => fetch(`/api/settings?id=${encodeURIComponent(id)}`, { method: 'DELETE' }));
+    const ok = await run(() => apiBridge(`/api/settings?id=${encodeURIComponent(id)}`, { method: 'DELETE', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ groupKey: group?.key }) }));
     if (ok) setPendingDelete(null);
   }
 
