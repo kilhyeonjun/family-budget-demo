@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { EntityFieldInput } from './entity-cards';
-import type { EntityColumn, EntityOptions } from '@/lib/v4/entity-config';
-import type { EntityRow } from '@/lib/v4/entity-save';
+import type { EntityColumn, EntityOptions } from '../../lib/v4/entity-config';
+import type { EntityRow } from '../../lib/v4/entity-save';
 
 function money(value: unknown) { return `${new Intl.NumberFormat('ko-KR').format(Math.abs(Number(value) || 0))}원`; }
 function cycle(value: unknown) { return value === 'annual' ? '연간' : value === 'quarterly' ? '분기' : '매월'; }

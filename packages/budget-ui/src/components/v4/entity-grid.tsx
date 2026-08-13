@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import { EntityCards } from './entity-cards';
 import { EntityTable } from './entity-table';
 import { RecurringRuleManager } from './recurring-rule-manager';
-import { planEntitySave, type EntityRow } from '@/lib/v4/entity-save';
-import { ENTITY_SPECS, type EntityKind, type EntityOptions } from '@/lib/v4/entity-config';
+import { planEntitySave, type EntityRow } from '../../lib/v4/entity-save';
+import { ENTITY_SPECS, type EntityKind, type EntityOptions } from '../../lib/v4/entity-config';
 import { useBudgetRuntime } from '../../runtime';
 
 type Row = EntityRow;

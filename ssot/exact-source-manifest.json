@@ -10,7 +10,8 @@
     "read-dto/provider": "public synthetic reads implement canonical DTOs",
     "read-dto/type-only": "visible component keeps markup while importing a public-safe DTO type",
     "command-adapter": "canonical visible controls call local adapter instead of network",
-    "runtime-provider": "canonical client controls use the package runtime provider instead of a consumer alias"
+    "runtime-provider": "canonical client controls use the package runtime provider instead of a consumer alias",
+    "package-import-boundary": "canonical package uses relative internal imports so consumers need no tsconfig source aliases"
   },
   "files": [
     {
@@ -31,36 +32,36 @@
       "path": "components/v4/close-checklist.tsx",
       "upstream_path": "components/v4/close-checklist.tsx",
       "upstream_sha256": "2e9f49d7c3b4659b7220b57ad35e7dceb7e489f89c72cf2733a6027271385a64",
-      "public_sha256": "2e9f49d7c3b4659b7220b57ad35e7dceb7e489f89c72cf2733a6027271385a64",
-      "seam": null
+      "public_sha256": "38cdfa96c129d870c30ff4b9b78981e6614d89d5dd8d7ae0dd15b997c196ed3a",
+      "seam": "package-import-boundary"
     },
     {
       "path": "components/v4/decision-badge.tsx",
       "upstream_path": "components/v4/decision-badge.tsx",
       "upstream_sha256": "0638a448029c3b816cb85a9d786aa8e37a133be5df46730ec7bcda1670d9a63d",
-      "public_sha256": "0638a448029c3b816cb85a9d786aa8e37a133be5df46730ec7bcda1670d9a63d",
-      "seam": null
+      "public_sha256": "8c8b4d6cf2b386e32528f1c8656f52f2aea0398000f4fbfe82c4de192fda3657",
+      "seam": "package-import-boundary"
     },
     {
       "path": "components/v4/entity-cards.tsx",
       "upstream_path": "components/v4/entity-cards.tsx",
       "upstream_sha256": "4cbc726ed255d2613328dc24d55a2db145138372097393928d9d2497fb31e27f",
-      "public_sha256": "4cbc726ed255d2613328dc24d55a2db145138372097393928d9d2497fb31e27f",
-      "seam": null
+      "public_sha256": "441edac4f4451be4e7d47a91dfd23d203fde26f29eb9b312c2c7c70f0d8e1441",
+      "seam": "package-import-boundary"
     },
     {
       "path": "components/v4/entity-grid.tsx",
       "upstream_path": "components/v4/entity-grid.tsx",
       "upstream_sha256": "280994ea18ed138a4c7f34f1b582abe9d2fc4f12182c534ba38fbfc60643754d",
-      "public_sha256": "8efca37ec92e5c6678e2427ee5c1e757a57a1f05923e55ea4d6db26353d40442",
+      "public_sha256": "07f84cd308302817495f2194c98a88d71279fdb3980c012f1846c3b5c0399576",
       "seam": "runtime-provider"
     },
     {
       "path": "components/v4/entity-table.tsx",
       "upstream_path": "components/v4/entity-table.tsx",
       "upstream_sha256": "3694c1d34dbe641519dc7ae9b88b9ddbb8a7a49eff46e829f39a767fca023540",
-      "public_sha256": "3694c1d34dbe641519dc7ae9b88b9ddbb8a7a49eff46e829f39a767fca023540",
-      "seam": null
+      "public_sha256": "943204ce675a7da0251bc861e959ef741d571bcff1dd97816184e1474fce40a2",
+      "seam": "package-import-boundary"
     },
     {
       "path": "components/v4/kpi-row.tsx",
@@ -87,15 +88,15 @@
       "path": "components/v4/quick-entry-form.tsx",
       "upstream_path": "components/v4/quick-entry-form.tsx",
       "upstream_sha256": "58e3831323c96aa0b01341d7141a85da75f10a00dbaa08ea51f57cd4984fe6df",
-      "public_sha256": "d0ea0abcd51594d8dc8bf105043b7fbb4fd56b431eea8cce42168f184ef597df",
+      "public_sha256": "e91464a68790495b6b13e0993d4b2d184f10f1170a026cf45a28f3a447dc1c59",
       "seam": "runtime-provider"
     },
     {
       "path": "components/v4/recent-list.tsx",
       "upstream_path": "components/v4/recent-list.tsx",
       "upstream_sha256": "3e918221976b696ab392ac56f02f312f090611e2880d686730a659fee874f49a",
-      "public_sha256": "3e918221976b696ab392ac56f02f312f090611e2880d686730a659fee874f49a",
-      "seam": null
+      "public_sha256": "e54df1269e6569fc4669e78c8ee94ebedfe75cde51d6cc60e8be520be0a2239a",
+      "seam": "package-import-boundary"
     },
     {
       "path": "components/v4/recurring-reconciliation.tsx",
@@ -108,8 +109,8 @@
       "path": "components/v4/recurring-rule-manager.tsx",
       "upstream_path": "components/v4/recurring-rule-manager.tsx",
       "upstream_sha256": "ecca26b257a7459dfdda35edda9e07958f4a750b60c1e4b9430ed911dee08b68",
-      "public_sha256": "ecca26b257a7459dfdda35edda9e07958f4a750b60c1e4b9430ed911dee08b68",
-      "seam": null
+      "public_sha256": "752ef85520698bd20a5cfdb78bc656155e93d1697d2c88781c07e9f4b6a31cc6",
+      "seam": "package-import-boundary"
     },
     {
       "path": "components/v4/recurring-tabs.tsx",
@@ -178,8 +179,8 @@
       "path": "lib/v4/entity-save.ts",
       "upstream_path": "lib/v4/entity-save.ts",
       "upstream_sha256": "656d16383902a8b39646a61754390dbc91a72fd6c4571abc2c05b6d41352294e",
-      "public_sha256": "656d16383902a8b39646a61754390dbc91a72fd6c4571abc2c05b6d41352294e",
-      "seam": null
+      "public_sha256": "f9cc8e7bcf25a1f176d54ed1503a6cb5f2209c4633ce2519804d8cdc060af046",
+      "seam": "package-import-boundary"
     },
     {
       "path": "lib/v4/quick-entry.ts",

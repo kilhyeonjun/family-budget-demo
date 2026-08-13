@@ -1,8 +1,8 @@
 'use client';
 
 import { EntityFieldInput } from './entity-cards';
-import type { EntityColumn, EntityOptions } from '@/lib/v4/entity-config';
-import type { EntityRow } from '@/lib/v4/entity-save';
+import type { EntityColumn, EntityOptions } from '../../lib/v4/entity-config';
+import type { EntityRow } from '../../lib/v4/entity-save';
 
 export function EntityTable({ columns, rows, savedRows, options, deleteIds, height, onChangeCell, onToggleDelete }: {
   columns: EntityColumn[];

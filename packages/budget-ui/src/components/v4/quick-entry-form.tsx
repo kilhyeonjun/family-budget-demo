@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { buildQuickPayload, type QuickKind } from '@/lib/v4/quick-entry';
-import { dateForSelectedMonth } from '@/lib/local-date';
+import { buildQuickPayload, type QuickKind } from '../../lib/v4/quick-entry';
+import { dateForSelectedMonth } from '../../lib/local-date';
 import { useBudgetRuntime } from '../../runtime';
 
 type Settings = { categories?: string[]; purposeAccounts?: string[]; paymentMethods?: string[]; budgetTreatments?: string[] };

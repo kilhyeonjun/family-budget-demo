@@ -1,4 +1,4 @@
-import { buildLedgerSavePlan, type LedgerRow } from '@/lib/ledger-save-plan';
+import { buildLedgerSavePlan, type LedgerRow } from '../ledger-save-plan';
 
 export type EntityRow = LedgerRow;
 export type EntitySavePlan = {

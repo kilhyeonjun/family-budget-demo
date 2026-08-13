@@ -1,4 +1,4 @@
-import type { MonthlyDecision } from '@/lib/monthly-decision';
+import type { MonthlyDecision } from '../../lib/monthly-decision';
 
 const TONE: Record<string, { bg: string; border: string; text: string }> = {
   'ready': { bg: 'bg-[#ecfdf5]', border: 'border-[#a7f3d0]', text: 'text-[var(--fbv4-income)]' },

@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { EntityColumn, EntityOptions } from '@/lib/v4/entity-config';
-import type { EntityRow } from '@/lib/v4/entity-save';
+import type { EntityColumn, EntityOptions } from '../../lib/v4/entity-config';
+import type { EntityRow } from '../../lib/v4/entity-save';
 
 const inputStyle =
   'w-full h-11 px-3 rounded-xl border border-[var(--fbv4-hairline)] bg-[var(--fbv4-canvas)] text-sm outline-none focus:border-[var(--fbv4-accent)] focus:ring-2 focus:ring-[var(--fbv4-accent)]/30';

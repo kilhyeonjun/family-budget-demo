@@ -1,6 +1,6 @@
 'use client';
 
-import { classifyTransaction } from '@/lib/aggregate';
+import { classifyTransaction } from '../../lib/aggregate';
 
 type Row = { id: string; date?: string; description?: string; amount?: number; major_category?: string; budget_treatment?: string };
 

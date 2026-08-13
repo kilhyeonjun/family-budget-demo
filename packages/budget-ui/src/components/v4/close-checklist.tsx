@@ -1,4 +1,4 @@
-import type { DashboardCloseStatus } from '@/lib/dashboard-close';
+import type { DashboardCloseStatus } from '../../lib/dashboard-close';
 
 function chip(ok: boolean, label: string) {
   return (
