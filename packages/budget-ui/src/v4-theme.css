@@ -1,0 +1,50 @@
+/* v4 디자인 토큰 — tokens-final.md 기준. HeroUI v3 oklch 토큰을 v4 팔레트로 override. */
+:root, .fbv4 {
+  /* HeroUI v3 시맨틱 토큰 override */
+  --accent: #2563EB;
+  --accent-foreground: #FFFFFF;
+  --success: #087A5B;
+  --success-foreground: #FFFFFF;
+  --danger: #D43B3B;
+  --danger-foreground: #FFFFFF;
+  --background: #F5F7FB;
+  --foreground: #102033;
+  --surface: #FFFFFF;
+  --surface-secondary: #EEF3F8;
+  --muted: #607080;
+  --border: #DCE3EC;
+  --separator: #DCE3EC;
+  --radius: 0.875rem;
+
+  /* v4 커스텀 토큰 — Penguin Ledger Refined */
+  --fbv4-canvas: #F5F7FB;
+  --fbv4-surface: #FFFFFF;
+  --fbv4-subtle: #EEF3F8;
+  --fbv4-ink: #102033;
+  --fbv4-secondary: #526174;
+  --fbv4-muted: #607080;
+  --fbv4-hairline: #DCE3EC;
+  --fbv4-accent: #2563EB;
+  --fbv4-navy: #1E3A5F;
+  --fbv4-income: #087A5B;
+  --fbv4-expense: #D43B3B;
+  --fbv4-attention: #B45309;
+  --fbv4-attention-bg: #FFF8ED;
+  --fbv4-shadow-card: 0 8px 28px rgba(16,32,51,0.06);
+  --fbv4-radius-card: 24px;
+  --fbv4-radius-btn: 14px;
+  --fbv4-radius-input: 12px;
+}
+
+/* 금액 부호색 (도메인 전용, 액센트 블루 금지) */
+.fbv4-money-in { color: var(--fbv4-income); }
+.fbv4-money-out { color: var(--fbv4-expense); }
+/* 숫자 타이포: tabular, tracking */
+.fbv4-num { font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+
+/* v4 루트 컨테이너 기본 */
+.fbv4 {
+  font-family: Pretendard, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  color: var(--fbv4-ink);
+  background: var(--fbv4-canvas);
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@penguin-couple/budget-ui",
+  "private": true,
+  "version": "0.1.0",
+  "exports": {
+    "./contracts": "./src/contracts.ts",
+    "./theme.css": "./src/v4-theme.css"
+  },
+  "peerDependencies": {
+    "next": ">=16",
+    "react": ">=19",
+    "react-dom": ">=19"
+  }
+}
