@@ -4,6 +4,9 @@
   "version": "0.1.0",
   "exports": {
     "./contracts": "./src/contracts.ts",
+    "./runtime": "./src/runtime.tsx",
+    "./components/v4/*": "./src/components/v4/*.tsx",
+    "./lib/*": "./src/lib/*.ts",
     "./theme.css": "./src/v4-theme.css"
   },
   "peerDependencies": {

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { buildQuickPayload, type QuickKind } from '@/lib/v4/quick-entry';
 import { dateForSelectedMonth } from '@/lib/local-date';
-import { apiBridge } from '@/lib/synthetic-budget';
+import { useBudgetRuntime } from '../../runtime';
 
 type Settings = { categories?: string[]; purposeAccounts?: string[]; paymentMethods?: string[]; budgetTreatments?: string[] };
 type SubmitResult = { ok: boolean; row?: Record<string, unknown>; error?: string };
@@ -19,6 +19,7 @@ function formattedAmount(value: string) {
 export function QuickEntryForm({ month, owner, settings, onSaved }: {
   month: string; owner: string; settings: Settings; onSaved: (row: Record<string, unknown>) => void;
 }) {
+  const { request } = useBudgetRuntime().commands;
   const today = dateForSelectedMonth(month);
   const [kind, setKind] = useState<QuickKind>('expense');
   const [date, setDate] = useState(today);
@@ -44,7 +45,7 @@ export function QuickEntryForm({ month, owner, settings, onSaved }: {
     if (!built.ok) { setError(built.error); return; }
     setSaving(true); setError('');
     try {
-      const res = await apiBridge('/api/transactions', {
+      const res = await request('/api/transactions', {
         method: 'POST', headers: { 'content-type': 'application/json' },
         body: JSON.stringify(built.payload),
       });

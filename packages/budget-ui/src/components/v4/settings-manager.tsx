@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { apiBridge } from '@/lib/synthetic-budget';
+import { useBudgetRuntime } from '../../runtime';
 
 type Item = { id: string | null; label: string; sortOrder: number; editable: boolean; source: string };
 type Group = { key: string; title: string; writeKind: string; items: Item[] };
@@ -10,6 +10,7 @@ type Group = { key: string; title: string; writeKind: string; items: Item[] };
 const NO_ADD = new Set(['owners']);
 
 export function SettingsManager({ groups: initial }: { groups: Group[] }) {
+  const { request } = useBudgetRuntime().commands;
   const [groups, setGroups] = useState<Group[]>(initial);
   const [selected, setSelected] = useState<string>(initial.find(g => !NO_ADD.has(g.key))?.key ?? initial[0]?.key ?? '');
   const [draft, setDraft] = useState('');
@@ -21,7 +22,7 @@ export function SettingsManager({ groups: initial }: { groups: Group[] }) {
   const group = groups.find(g => g.key === selected);
 
   async function reload() {
-    const r = await apiBridge('/api/settings').then(res => res.json()).catch(() => null);
+    const r = await request('/api/settings').then(res => res.json()).catch(() => null);
     if (r?.settingGroups) setGroups(r.settingGroups);
   }
 
@@ -46,19 +47,19 @@ export function SettingsManager({ groups: initial }: { groups: Group[] }) {
   async function add() {
     const label = draft.trim();
     if (!label || !group) return;
-    const ok = await run(() => apiBridge('/api/settings', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ groupKey: group.key, label }) }));
+    const ok = await run(() => request('/api/settings', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ groupKey: group.key, label }) }));
     if (ok) setDraft('');
   }
   async function saveEdit() {
     if (!editing) return;
     const label = editing.label.trim();
     if (!label) return;
-    const ok = await run(() => apiBridge('/api/settings', { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ groupKey: group?.key, id: editing.id, label }) }));
+    const ok = await run(() => request('/api/settings', { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ groupKey: group?.key, id: editing.id, label }) }));
     if (ok) setEditing(null);
   }
   async function remove(id: string) {
     if (pendingDelete !== id) { setPendingDelete(id); return; }
-    const ok = await run(() => apiBridge(`/api/settings?id=${encodeURIComponent(id)}`, { method: 'DELETE', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ groupKey: group?.key }) }));
+    const ok = await run(() => request(`/api/settings?id=${encodeURIComponent(id)}`, { method: 'DELETE', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ groupKey: group?.key }) }));
     if (ok) setPendingDelete(null);
   }
 

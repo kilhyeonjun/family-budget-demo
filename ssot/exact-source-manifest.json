@@ -9,7 +9,8 @@
     "synthetic-disclosure": "public shell labels synthetic browser-only data",
     "read-dto/provider": "public synthetic reads implement canonical DTOs",
     "read-dto/type-only": "visible component keeps markup while importing a public-safe DTO type",
-    "command-adapter": "canonical visible controls call local adapter instead of network"
+    "command-adapter": "canonical visible controls call local adapter instead of network",
+    "runtime-provider": "canonical client controls use the package runtime provider instead of a consumer alias"
   },
   "files": [
     {
@@ -51,8 +52,8 @@
       "path": "components/v4/entity-grid.tsx",
       "upstream_path": "components/v4/entity-grid.tsx",
       "upstream_sha256": "280994ea18ed138a4c7f34f1b582abe9d2fc4f12182c534ba38fbfc60643754d",
-      "public_sha256": "32a56364d01142acd07de2313ffdfb5b7c33470ded48411da789157a4cc30ec6",
-      "seam": "command-adapter"
+      "public_sha256": "8efca37ec92e5c6678e2427ee5c1e757a57a1f05923e55ea4d6db26353d40442",
+      "seam": "runtime-provider"
     },
     {
       "path": "components/v4/entity-table.tsx",
@@ -86,8 +87,8 @@
       "path": "components/v4/quick-entry-form.tsx",
       "upstream_path": "components/v4/quick-entry-form.tsx",
       "upstream_sha256": "58e3831323c96aa0b01341d7141a85da75f10a00dbaa08ea51f57cd4984fe6df",
-      "public_sha256": "aae4d13c19a00df1129b2c578a1b03d24c910a2c11689e36c617d537c73e7d19",
-      "seam": "command-adapter"
+      "public_sha256": "d0ea0abcd51594d8dc8bf105043b7fbb4fd56b431eea8cce42168f184ef597df",
+      "seam": "runtime-provider"
     },
     {
       "path": "components/v4/recent-list.tsx",
@@ -100,8 +101,8 @@
       "path": "components/v4/recurring-reconciliation.tsx",
       "upstream_path": "components/v4/recurring-reconciliation.tsx",
       "upstream_sha256": "5418d579c9836cb2dddcc5de0ce13330d469f1696cf9cf04e0e55215d9d92b54",
-      "public_sha256": "6b83188d5dd608ea95439edbbbfad859d03860fddb735cb62874a2ef66a4b002",
-      "seam": "command-adapter"
+      "public_sha256": "d0b8ae710966ef12e5df9dabc100b08b7cdeadc85953e63f2d401656b9f940cd",
+      "seam": "runtime-provider"
     },
     {
       "path": "components/v4/recurring-rule-manager.tsx",
@@ -121,8 +122,8 @@
       "path": "components/v4/settings-manager.tsx",
       "upstream_path": "components/v4/settings-manager.tsx",
       "upstream_sha256": "1ea09f83d5245bdd5e1d33678991b0f45edc9cb655801f921ecb9fd27addecb0",
-      "public_sha256": "94d1caf074e036eeaaa1fe13da1f11d0a71b6f35f8d478d91625104638d180d7",
-      "seam": "command-adapter"
+      "public_sha256": "0bc3d59e0f2818493bd4e2f04c68cdb11fe18cbe6ff0766658581a8ff7e78aa0",
+      "seam": "runtime-provider"
     },
     {
       "path": "components/v4/today-client.tsx",

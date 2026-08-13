@@ -1,8 +1,8 @@
-import type { BudgetCommandAdapter, BudgetReadProvider, DashboardDto, PurposeAccountRow, Row, SettingGroup } from '@/packages/budget-ui/src/contracts';
-import type { EntityKind, EntityOptions } from '@/packages/budget-ui/src/lib/v4/entity-config';
-import { sumTransactions } from '@/packages/budget-ui/src/lib/aggregate';
-import { deriveDashboardCloseStatus } from '@/packages/budget-ui/src/lib/dashboard-close';
-import { deriveMonthlyDecision } from '@/packages/budget-ui/src/lib/monthly-decision';
+import type { BudgetCommandAdapter, BudgetReadProvider, DashboardDto, PurposeAccountRow, Row, SettingGroup } from '@penguin-couple/budget-ui/contracts';
+import type { EntityKind, EntityOptions } from '@penguin-couple/budget-ui/lib/v4/entity-config';
+import { sumTransactions } from '@penguin-couple/budget-ui/lib/aggregate';
+import { deriveDashboardCloseStatus } from '@penguin-couple/budget-ui/lib/dashboard-close';
+import { deriveMonthlyDecision } from '@penguin-couple/budget-ui/lib/monthly-decision';
 
 const KEY = 'family-budget-demo:v4';
 export const FIXED_NOW = new Date('2026-08-13T12:00:00+09:00');
@@ -56,6 +56,7 @@ export const syntheticReads: BudgetReadProvider = {
 };
 
 export const syntheticCommands: BudgetCommandAdapter = {
+  request: apiBridge,
   async create(kind, month, row) { const state = load(); const created = { ...row, id: `${kind}-${Date.now()}`, month }; state.entities[kind].unshift(created); save(state); return clone(created); },
   async update(kind, id, changed) { const state = load(); const index = state.entities[kind].findIndex(row => row.id === id); if (index < 0) throw new Error('항목을 찾지 못했어요.'); state.entities[kind][index] = { ...state.entities[kind][index], ...changed }; save(state); return clone(state.entities[kind][index]); },
   async remove(kind, id) { const state = load(); state.entities[kind] = state.entities[kind].filter(row => row.id !== id); save(state); },

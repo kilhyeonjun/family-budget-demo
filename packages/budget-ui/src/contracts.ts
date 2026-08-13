@@ -27,6 +27,7 @@ export interface BudgetReadProvider {
 }
 
 export interface BudgetCommandAdapter {
+  request(input: RequestInfo | URL, init?: RequestInit): Promise<Response>;
   create(kind: EntityKind, month: string, row: Row): Promise<Row>;
   update(kind: EntityKind, id: string, changed: Row): Promise<Row>;
   remove(kind: EntityKind, id: string): Promise<void>;

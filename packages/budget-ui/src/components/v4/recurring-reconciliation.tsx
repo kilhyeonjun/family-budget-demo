@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { apiBridge } from '@/lib/synthetic-budget';
+import { useBudgetRuntime } from '../../runtime';
 
 type Reconciliation = { state: 'pending' | 'matched' | 'variance' | 'skipped' | 'orphaned'; status: '미반영' | '확인' | '차이' | '건너뜀' | '연결끊김'; expectedAmount: number; actualAmount: number; difference: number };
 type Candidate = { id: string; entity: 'transactions' | 'purpose'; date: string; amount: number; matchScore?: number; matchReasons?: string[] };
@@ -28,6 +28,7 @@ function expectedDate(month: string, day: number) {
 }
 
 export function RecurringReconciliation({ month, owner }: { month: string; owner: string }) {
+  const { request } = useBudgetRuntime().commands;
   const [rules, setRules] = useState<Rule[]>([]);
   const [dates, setDates] = useState<Record<string, string>>({});
   const [amounts, setAmounts] = useState<Record<string, string>>({});
@@ -43,7 +44,7 @@ export function RecurringReconciliation({ month, owner }: { month: string; owner
   const submissionLock = useRef(false);
 
   const load = useCallback(async () => {
-    const response = await apiBridge(`/api/recurring/reconciliation?month=${encodeURIComponent(month)}&owner=${encodeURIComponent(owner)}`, { cache: 'no-store' });
+    const response = await request(`/api/recurring/reconciliation?month=${encodeURIComponent(month)}&owner=${encodeURIComponent(owner)}`, { cache: 'no-store' });
     const body = await response.json().catch(() => ({}));
     if (!response.ok || !Array.isArray(body.rows)) throw new Error(body.error || '반영 상태를 불러오지 못했어요.');
     const next = body.rows as Rule[];
@@ -78,7 +79,7 @@ export function RecurringReconciliation({ month, owner }: { month: string; owner
         ? { month, action, actualEntity: candidate.entity, actualId: candidate.id }
         : { month, action, date: dates[rule.id], actualAmount: Number(amounts[rule.id]) };
     try {
-      const response = await apiBridge(`/api/recurring/${rule.id}/realize`, {
+      const response = await request(`/api/recurring/${rule.id}/realize`, {
         method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload),
       });
       const body = await response.json().catch(() => ({}));

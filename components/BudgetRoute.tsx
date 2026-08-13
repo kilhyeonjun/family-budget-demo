@@ -2,31 +2,32 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { TodayClient } from '@/packages/budget-ui/src/components/v4/today-client';
-import { DecisionBadge } from '@/packages/budget-ui/src/components/v4/decision-badge';
-import { KpiRow } from '@/packages/budget-ui/src/components/v4/kpi-row';
-import { CloseChecklist } from '@/packages/budget-ui/src/components/v4/close-checklist';
-import { CategoryRanking } from '@/packages/budget-ui/src/components/v4/category-ranking';
-import { EntityGrid } from '@/packages/budget-ui/src/components/v4/entity-grid';
-import { PurposeSummary } from '@/packages/budget-ui/src/components/v4/purpose-summary';
-import { RecurringReconciliation } from '@/packages/budget-ui/src/components/v4/recurring-reconciliation';
-import { RecurringTabs } from '@/packages/budget-ui/src/components/v4/recurring-tabs';
-import { SettingsManager } from '@/packages/budget-ui/src/components/v4/settings-manager';
-import { ENTITY_SPECS, type EntityKind } from '@/packages/budget-ui/src/lib/v4/entity-config';
-import type { DashboardDto, PurposeAccountRow, Row, SettingGroup, TodaySettings } from '@/packages/budget-ui/src/contracts';
-import { FIXED_NOW, syntheticReads } from '@/lib/synthetic-budget';
+import { TodayClient } from '@penguin-couple/budget-ui/components/v4/today-client';
+import { DecisionBadge } from '@penguin-couple/budget-ui/components/v4/decision-badge';
+import { KpiRow } from '@penguin-couple/budget-ui/components/v4/kpi-row';
+import { CloseChecklist } from '@penguin-couple/budget-ui/components/v4/close-checklist';
+import { CategoryRanking } from '@penguin-couple/budget-ui/components/v4/category-ranking';
+import { EntityGrid } from '@penguin-couple/budget-ui/components/v4/entity-grid';
+import { PurposeSummary } from '@penguin-couple/budget-ui/components/v4/purpose-summary';
+import { RecurringReconciliation } from '@penguin-couple/budget-ui/components/v4/recurring-reconciliation';
+import { RecurringTabs } from '@penguin-couple/budget-ui/components/v4/recurring-tabs';
+import { SettingsManager } from '@penguin-couple/budget-ui/components/v4/settings-manager';
+import type { EntityKind } from '@penguin-couple/budget-ui/lib/v4/entity-config';
+import type { BudgetReadProvider, DashboardDto, PurposeAccountRow, Row, SettingGroup, TodaySettings } from '@penguin-couple/budget-ui/contracts';
+import { useBudgetRuntime } from '@penguin-couple/budget-ui/runtime';
 
 type Route = 'today' | 'dashboard' | 'ledger' | 'purpose' | 'assets' | 'recurring' | 'settings';
-type Data = { today?: { settings: TodaySettings; rows: Row[] }; dashboard?: DashboardDto; entity?: Awaited<ReturnType<typeof syntheticReads.entity>>; purpose?: PurposeAccountRow[]; settings?: SettingGroup[] };
+type Data = { today?: { settings: TodaySettings; rows: Row[] }; dashboard?: DashboardDto; entity?: Awaited<ReturnType<BudgetReadProvider['entity']>>; purpose?: PurposeAccountRow[]; settings?: SettingGroup[] };
 const titles: Record<Route, [string, string]> = { today: ['오늘 입력', '빠르게 기록해요'], dashboard: ['대시보드', '이번 달 판단과 할 일'], ledger: ['거래원장', '이번 달 거래를 표로 관리해요'], purpose: ['목적통장', '통장별 입금과 사용을 확인해요'], assets: ['자산', '이번 달 자산 스냅샷'], recurring: ['예상 항목', '예상 수입·고정지출·저축'], settings: ['설정', '입력 항목을 관리해요'] };
 const won = (v: number) => `${v.toLocaleString('ko-KR')}원`;
 
 export function BudgetRoute({ route }: { route: Route }) {
+  const { now: clock, reads } = useBudgetRuntime();
   const params = useSearchParams();
-  const month = /^\d{4}-\d{2}$/.test(params.get('month') || '') ? params.get('month')! : `${FIXED_NOW.getFullYear()}-${String(FIXED_NOW.getMonth() + 1).padStart(2, '0')}`;
+  const month = /^\d{4}-\d{2}$/.test(params.get('month') || '') ? params.get('month')! : `${clock().getFullYear()}-${String(clock().getMonth() + 1).padStart(2, '0')}`;
   const owner = ['all', '공동', '현준', '아내'].includes(params.get('owner') || '') ? params.get('owner')! : 'all';
   const [data, setData] = useState<Data>();
-  useEffect(() => { let live = true; (async () => { const next: Data = {}; if (route === 'today') next.today = await syntheticReads.today(month, owner); if (route === 'dashboard') next.dashboard = await syntheticReads.dashboard(month, owner); if (['ledger', 'purpose', 'assets', 'recurring'].includes(route)) next.entity = await syntheticReads.entity((route === 'ledger' ? 'transactions' : route) as EntityKind, month, owner); if (route === 'purpose') next.purpose = await syntheticReads.purpose(month); if (route === 'settings') next.settings = await syntheticReads.settings(); if (live) setData(next); })(); return () => { live = false; }; }, [route, month, owner]);
+  useEffect(() => { let live = true; (async () => { const next: Data = {}; if (route === 'today') next.today = await reads.today(month, owner); if (route === 'dashboard') next.dashboard = await reads.dashboard(month, owner); if (['ledger', 'purpose', 'assets', 'recurring'].includes(route)) next.entity = await reads.entity((route === 'ledger' ? 'transactions' : route) as EntityKind, month, owner); if (route === 'purpose') next.purpose = await reads.purpose(month); if (route === 'settings') next.settings = await reads.settings(); if (live) setData(next); })(); return () => { live = false; }; }, [route, month, owner, reads]);
   if (!data) return <div className="h-72 rounded-2xl bg-[var(--fbv4-subtle)] animate-pulse" aria-label="화면 불러오는 중" />;
   const [eyebrow, heading] = titles[route];
   const rows = data.entity?.rows ?? [];

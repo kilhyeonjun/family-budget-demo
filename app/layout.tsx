@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import '@/packages/budget-ui/src/v4-theme.css';
+import '@penguin-couple/budget-ui/theme.css';
 import { DemoShell } from '@/components/DemoShell';
 
 export const metadata: Metadata = {

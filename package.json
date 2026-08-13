@@ -2,6 +2,7 @@
   "name": "family-budget-demo",
   "version": "0.1.0",
   "private": true,
+  "workspaces": ["packages/*"],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -11,9 +12,12 @@
     "test:watch": "vitest",
     "verify:ssot": "node scripts/verify-ssot.mjs",
     "scan:public-boundary": "node scripts/scan-public-boundary.mjs",
-    "check:public-ssot": "node scripts/check-public-ssot.test.mjs"
+    "check:public-ssot": "node scripts/check-public-ssot.test.mjs",
+    "check:package-runtime": "node scripts/check-package-runtime.test.mjs",
+    "check:production-css": "node scripts/check-production-css.test.mjs"
   },
   "dependencies": {
+    "@penguin-couple/budget-ui": "workspace:*",
     "@heroui/react": "3.2.4",
     "@heroui/styles": "3.2.4",
     "date-fns": "4.1.0",
