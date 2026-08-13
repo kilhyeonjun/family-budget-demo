@@ -1,6 +1,2 @@
-import { loadSeedData } from '@/lib/data-loader';
-import V4DemoApp from '@/components/V4DemoApp';
-
-export default async function DashboardPage() {
-  return <V4DemoApp seed={await loadSeedData()} screen="dashboard" />;
-}
+import { BudgetRoute } from '@/components/BudgetRoute';
+export default function Page() { return <BudgetRoute route="dashboard" />; }

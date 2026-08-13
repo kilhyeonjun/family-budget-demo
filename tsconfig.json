@@ -22,9 +22,11 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
       "@/*": [
-        "./*"
+        "./*",
+        "./packages/budget-ui/src/*"
       ]
     }
   },

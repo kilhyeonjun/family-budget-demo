@@ -1,0 +1,201 @@
+{
+  "upstream_repository": "family-budget-web",
+  "upstream_commit": "348d5832445f4ca560e23bfe3666dc3d8277bb97",
+  "public_base_commit": "ca78ec89e35f87a83fe1fa5c2f1ac28c5176a77c",
+  "public_package": "packages/budget-ui",
+  "seams": {
+    "route-mounting/base": "private /v4 mount becomes public root routes",
+    "deterministic-clock": "public adapter freezes 2026-08-13",
+    "synthetic-disclosure": "public shell labels synthetic browser-only data",
+    "read-dto/provider": "public synthetic reads implement canonical DTOs",
+    "read-dto/type-only": "visible component keeps markup while importing a public-safe DTO type",
+    "command-adapter": "canonical visible controls call local adapter instead of network",
+    "runtime-provider": "canonical client controls use the package runtime provider instead of a consumer alias",
+    "package-import-boundary": "canonical package uses relative internal imports so consumers need no tsconfig source aliases",
+    "accessibility-responsive": "minimum 44px interactive targets and min-width containment without changing labels or behavior"
+  },
+  "files": [
+    {
+      "path": "components/v4/app-shell.tsx",
+      "upstream_path": "components/v4/app-shell.tsx",
+      "upstream_sha256": "6494880ca696d21d8cf0692e99bc5cfa292aa17b564d36ee00485025320b4f97",
+      "public_sha256": "6494880ca696d21d8cf0692e99bc5cfa292aa17b564d36ee00485025320b4f97",
+      "seam": null
+    },
+    {
+      "path": "components/v4/category-ranking.tsx",
+      "upstream_path": "components/v4/category-ranking.tsx",
+      "upstream_sha256": "2e36aa40eb7bdbae4c0d10a65ead6e17575eaa412416ec71365a29df3d2e9f23",
+      "public_sha256": "2e36aa40eb7bdbae4c0d10a65ead6e17575eaa412416ec71365a29df3d2e9f23",
+      "seam": null
+    },
+    {
+      "path": "components/v4/close-checklist.tsx",
+      "upstream_path": "components/v4/close-checklist.tsx",
+      "upstream_sha256": "2e9f49d7c3b4659b7220b57ad35e7dceb7e489f89c72cf2733a6027271385a64",
+      "public_sha256": "38cdfa96c129d870c30ff4b9b78981e6614d89d5dd8d7ae0dd15b997c196ed3a",
+      "seam": "package-import-boundary"
+    },
+    {
+      "path": "components/v4/decision-badge.tsx",
+      "upstream_path": "components/v4/decision-badge.tsx",
+      "upstream_sha256": "0638a448029c3b816cb85a9d786aa8e37a133be5df46730ec7bcda1670d9a63d",
+      "public_sha256": "8c8b4d6cf2b386e32528f1c8656f52f2aea0398000f4fbfe82c4de192fda3657",
+      "seam": "package-import-boundary"
+    },
+    {
+      "path": "components/v4/entity-cards.tsx",
+      "upstream_path": "components/v4/entity-cards.tsx",
+      "upstream_sha256": "4cbc726ed255d2613328dc24d55a2db145138372097393928d9d2497fb31e27f",
+      "public_sha256": "441edac4f4451be4e7d47a91dfd23d203fde26f29eb9b312c2c7c70f0d8e1441",
+      "seam": "package-import-boundary"
+    },
+    {
+      "path": "components/v4/entity-grid.tsx",
+      "upstream_path": "components/v4/entity-grid.tsx",
+      "upstream_sha256": "280994ea18ed138a4c7f34f1b582abe9d2fc4f12182c534ba38fbfc60643754d",
+      "public_sha256": "07f84cd308302817495f2194c98a88d71279fdb3980c012f1846c3b5c0399576",
+      "seam": "runtime-provider"
+    },
+    {
+      "path": "components/v4/entity-table.tsx",
+      "upstream_path": "components/v4/entity-table.tsx",
+      "upstream_sha256": "3694c1d34dbe641519dc7ae9b88b9ddbb8a7a49eff46e829f39a767fca023540",
+      "public_sha256": "943204ce675a7da0251bc861e959ef741d571bcff1dd97816184e1474fce40a2",
+      "seam": "package-import-boundary"
+    },
+    {
+      "path": "components/v4/kpi-row.tsx",
+      "upstream_path": "components/v4/kpi-row.tsx",
+      "upstream_sha256": "66c34640b1734e5306f8f6ff5e51eceea11ece2c52ad5df29956194752f0fade",
+      "public_sha256": "aaeed9d21b824f5a1657a599d2464a713f06e215908c15a5b56c9a8219bc141b",
+      "seam": "read-dto/type-only"
+    },
+    {
+      "path": "components/v4/nav-config.ts",
+      "upstream_path": "components/v4/nav-config.ts",
+      "upstream_sha256": "1438efa0799b4a178e36fb7e7d0c7498f14c34732c31441b8607cfdbf2126b03",
+      "public_sha256": "f1a526e9eb19c29604ad2ab1ee74e92278635b082930a063cef847cd90d502cc",
+      "seam": "route-mounting/base"
+    },
+    {
+      "path": "components/v4/purpose-summary.tsx",
+      "upstream_path": "components/v4/purpose-summary.tsx",
+      "upstream_sha256": "3d65cc55e27538ae6e91e841dcb0bfa3b879e4845385a8b96fbb7d002a5532f5",
+      "public_sha256": "c0c5a3cf95dbdf79f8b5377e01cb5c336afc2f42049a3ebad0f4842508932d57",
+      "seam": "read-dto/type-only"
+    },
+    {
+      "path": "components/v4/quick-entry-form.tsx",
+      "upstream_path": "components/v4/quick-entry-form.tsx",
+      "upstream_sha256": "58e3831323c96aa0b01341d7141a85da75f10a00dbaa08ea51f57cd4984fe6df",
+      "public_sha256": "e91464a68790495b6b13e0993d4b2d184f10f1170a026cf45a28f3a447dc1c59",
+      "seam": "runtime-provider"
+    },
+    {
+      "path": "components/v4/recent-list.tsx",
+      "upstream_path": "components/v4/recent-list.tsx",
+      "upstream_sha256": "3e918221976b696ab392ac56f02f312f090611e2880d686730a659fee874f49a",
+      "public_sha256": "e54df1269e6569fc4669e78c8ee94ebedfe75cde51d6cc60e8be520be0a2239a",
+      "seam": "package-import-boundary"
+    },
+    {
+      "path": "components/v4/recurring-reconciliation.tsx",
+      "upstream_path": "components/v4/recurring-reconciliation.tsx",
+      "upstream_sha256": "5418d579c9836cb2dddcc5de0ce13330d469f1696cf9cf04e0e55215d9d92b54",
+      "public_sha256": "b6878b96e01c1327f523987e4366da4907865f773e20af4731347ef85cb38768",
+      "seam": "runtime-provider"
+    },
+    {
+      "path": "components/v4/recurring-rule-manager.tsx",
+      "upstream_path": "components/v4/recurring-rule-manager.tsx",
+      "upstream_sha256": "ecca26b257a7459dfdda35edda9e07958f4a750b60c1e4b9430ed911dee08b68",
+      "public_sha256": "752ef85520698bd20a5cfdb78bc656155e93d1697d2c88781c07e9f4b6a31cc6",
+      "seam": "package-import-boundary"
+    },
+    {
+      "path": "components/v4/recurring-tabs.tsx",
+      "upstream_path": "components/v4/recurring-tabs.tsx",
+      "upstream_sha256": "26ee6a0a5af0c4bb941fa4f3505cc06ec6cf1485291663ea86c9b78d9d57fdc9",
+      "public_sha256": "f92d4f6b9ac8049afab86a1598c6dbb834624c3e492f6c74044a6bf9dfb632b0",
+      "seam": "accessibility-responsive"
+    },
+    {
+      "path": "components/v4/settings-manager.tsx",
+      "upstream_path": "components/v4/settings-manager.tsx",
+      "upstream_sha256": "1ea09f83d5245bdd5e1d33678991b0f45edc9cb655801f921ecb9fd27addecb0",
+      "public_sha256": "e048eddd024cf514753bd81e8a805a6fa923cda5318d8ca652a844d114470e55",
+      "seam": "runtime-provider"
+    },
+    {
+      "path": "components/v4/today-client.tsx",
+      "upstream_path": "components/v4/today-client.tsx",
+      "upstream_sha256": "f1d0b1bc2dc8724367bbd648e9beace8d4da49a3b65584019df3ddccc5e67fc0",
+      "public_sha256": "c0f947994fa884fd274c95f82c5a6f14aebf03f42a9181ad09d488289a72395a",
+      "seam": "route-mounting/base"
+    },
+    {
+      "path": "lib/aggregate.ts",
+      "upstream_path": "lib/aggregate.ts",
+      "upstream_sha256": "95136f4dfcdd96f246b8d367e0120ae80ddc917c150dbab2fd5572e53030926c",
+      "public_sha256": "95136f4dfcdd96f246b8d367e0120ae80ddc917c150dbab2fd5572e53030926c",
+      "seam": null
+    },
+    {
+      "path": "lib/dashboard-close.ts",
+      "upstream_path": "lib/dashboard-close.ts",
+      "upstream_sha256": "ac836e9925d9784fb26e831d2842af4271ce893850db013baebed96ec32817d4",
+      "public_sha256": "ac836e9925d9784fb26e831d2842af4271ce893850db013baebed96ec32817d4",
+      "seam": null
+    },
+    {
+      "path": "lib/ledger-save-plan.ts",
+      "upstream_path": "lib/ledger-save-plan.ts",
+      "upstream_sha256": "5d42277b77054d6b20ba21f5966e5fe67b4dc82dc4d5f37908672bd009ffb807",
+      "public_sha256": "5d42277b77054d6b20ba21f5966e5fe67b4dc82dc4d5f37908672bd009ffb807",
+      "seam": null
+    },
+    {
+      "path": "lib/local-date.ts",
+      "upstream_path": "lib/local-date.ts",
+      "upstream_sha256": "c8a313fce28f42d51116d90c704b466c86070edd905674f24564b1b8fb11d24c",
+      "public_sha256": "c8a313fce28f42d51116d90c704b466c86070edd905674f24564b1b8fb11d24c",
+      "seam": null
+    },
+    {
+      "path": "lib/monthly-decision.ts",
+      "upstream_path": "lib/monthly-decision.ts",
+      "upstream_sha256": "af6e95bca33ece25b3b36bf667bb99a1e5ec3c0c99c4ce7e978b5494457ec778",
+      "public_sha256": "af6e95bca33ece25b3b36bf667bb99a1e5ec3c0c99c4ce7e978b5494457ec778",
+      "seam": null
+    },
+    {
+      "path": "lib/v4/entity-config.ts",
+      "upstream_path": "lib/v4/entity-config.ts",
+      "upstream_sha256": "001f77ebd045b8f65c4288fc35824c04618b6f7547a93a7c4ed85ae3dea9bf69",
+      "public_sha256": "001f77ebd045b8f65c4288fc35824c04618b6f7547a93a7c4ed85ae3dea9bf69",
+      "seam": null
+    },
+    {
+      "path": "lib/v4/entity-save.ts",
+      "upstream_path": "lib/v4/entity-save.ts",
+      "upstream_sha256": "656d16383902a8b39646a61754390dbc91a72fd6c4571abc2c05b6d41352294e",
+      "public_sha256": "f9cc8e7bcf25a1f176d54ed1503a6cb5f2209c4633ce2519804d8cdc060af046",
+      "seam": "package-import-boundary"
+    },
+    {
+      "path": "lib/v4/quick-entry.ts",
+      "upstream_path": "lib/v4/quick-entry.ts",
+      "upstream_sha256": "ba0abdad0837d53cdda8846792067c049e7eb1e46990dc0e79da859ae5836722",
+      "public_sha256": "ba0abdad0837d53cdda8846792067c049e7eb1e46990dc0e79da859ae5836722",
+      "seam": null
+    },
+    {
+      "path": "v4-theme.css",
+      "upstream_path": "app/v4-theme.css",
+      "upstream_sha256": "a54506b1875fb1a0eeec33c66a557fdb809075c732ce4b20016557e9200245c3",
+      "public_sha256": "a54506b1875fb1a0eeec33c66a557fdb809075c732ce4b20016557e9200245c3",
+      "seam": null
+    }
+  ]
+}
