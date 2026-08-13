@@ -5,7 +5,9 @@
   "exports": {
     "./contracts": "./src/contracts.ts",
     "./runtime": "./src/runtime.tsx",
+    "./components/v4/nav-config": "./src/components/v4/nav-config.ts",
     "./components/v4/*": "./src/components/v4/*.tsx",
+    "./lib/v4/*": "./src/lib/v4/*.ts",
     "./lib/*": "./src/lib/*.ts",
     "./theme.css": "./src/v4-theme.css"
   },
