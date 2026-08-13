@@ -20,7 +20,7 @@ export function RecurringTabs({ check, rules }: { check: ReactNode; rules: React
             aria-controls={`recurring-${item.id}`}
             id={`recurring-tab-${item.id}`}
             onClick={() => setTab(item.id)}
-            className={`h-10 px-4 text-sm font-extrabold rounded-lg ${tab === item.id ? 'bg-[var(--fbv4-ink)] text-white' : 'text-[var(--fbv4-secondary)]'}`}
+            className={`h-11 px-4 text-sm font-extrabold rounded-lg ${tab === item.id ? 'bg-[var(--fbv4-ink)] text-white' : 'text-[var(--fbv4-secondary)]'}`}
           >
             {item.label}
           </button>

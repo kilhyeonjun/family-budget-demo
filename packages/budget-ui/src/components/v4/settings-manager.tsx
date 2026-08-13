@@ -79,7 +79,7 @@ export function SettingsManager({ groups: initial }: { groups: Group[] }) {
       </nav>
 
       {/* workspace */}
-      <div className="grid content-start gap-4 p-4 md:p-5">
+      <div className="min-w-0 grid content-start gap-4 p-4 md:p-5">
         {group && !NO_ADD.has(group.key) && (
           <form onSubmit={e => { e.preventDefault(); add(); }} className="flex gap-2">
             <input value={draft} onChange={e => setDraft(e.target.value)} aria-label={`${group.title} 항목 추가`} placeholder={`${group.title} 항목 추가`} maxLength={40}

@@ -11,7 +11,8 @@
     "read-dto/type-only": "visible component keeps markup while importing a public-safe DTO type",
     "command-adapter": "canonical visible controls call local adapter instead of network",
     "runtime-provider": "canonical client controls use the package runtime provider instead of a consumer alias",
-    "package-import-boundary": "canonical package uses relative internal imports so consumers need no tsconfig source aliases"
+    "package-import-boundary": "canonical package uses relative internal imports so consumers need no tsconfig source aliases",
+    "accessibility-responsive": "minimum 44px interactive targets and min-width containment without changing labels or behavior"
   },
   "files": [
     {
@@ -102,7 +103,7 @@
       "path": "components/v4/recurring-reconciliation.tsx",
       "upstream_path": "components/v4/recurring-reconciliation.tsx",
       "upstream_sha256": "5418d579c9836cb2dddcc5de0ce13330d469f1696cf9cf04e0e55215d9d92b54",
-      "public_sha256": "d0b8ae710966ef12e5df9dabc100b08b7cdeadc85953e63f2d401656b9f940cd",
+      "public_sha256": "b6878b96e01c1327f523987e4366da4907865f773e20af4731347ef85cb38768",
       "seam": "runtime-provider"
     },
     {
@@ -116,14 +117,14 @@
       "path": "components/v4/recurring-tabs.tsx",
       "upstream_path": "components/v4/recurring-tabs.tsx",
       "upstream_sha256": "26ee6a0a5af0c4bb941fa4f3505cc06ec6cf1485291663ea86c9b78d9d57fdc9",
-      "public_sha256": "26ee6a0a5af0c4bb941fa4f3505cc06ec6cf1485291663ea86c9b78d9d57fdc9",
-      "seam": null
+      "public_sha256": "f92d4f6b9ac8049afab86a1598c6dbb834624c3e492f6c74044a6bf9dfb632b0",
+      "seam": "accessibility-responsive"
     },
     {
       "path": "components/v4/settings-manager.tsx",
       "upstream_path": "components/v4/settings-manager.tsx",
       "upstream_sha256": "1ea09f83d5245bdd5e1d33678991b0f45edc9cb655801f921ecb9fd27addecb0",
-      "public_sha256": "0bc3d59e0f2818493bd4e2f04c68cdb11fe18cbe6ff0766658581a8ff7e78aa0",
+      "public_sha256": "e048eddd024cf514753bd81e8a805a6fa923cda5318d8ca652a844d114470e55",
       "seam": "runtime-provider"
     },
     {

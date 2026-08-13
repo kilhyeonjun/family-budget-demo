@@ -115,12 +115,12 @@ export function RecurringReconciliation({ month, owner }: { month: string; owner
           <span className="ml-2 text-xs text-[var(--fbv4-muted)]">{actionRequired ? '확인 필요' : '처리 완료'}{hasVariance ? ' · 금액 차이 있음' : ''}</span>
         </p>
         <label className="grid gap-1 text-xs font-bold text-[var(--fbv4-muted)]">상태
-          <select value={statusFilter} onChange={event => { setStatusFilter(event.target.value as typeof statusFilter); setVisibleCount(8); }} className="h-10 rounded-xl border border-[var(--fbv4-hairline)] px-3 text-sm text-[var(--fbv4-ink)]">
+          <select value={statusFilter} onChange={event => { setStatusFilter(event.target.value as typeof statusFilter); setVisibleCount(8); }} className="h-11 rounded-xl border border-[var(--fbv4-hairline)] px-3 text-sm text-[var(--fbv4-ink)]">
             <option value="action">미해결/확인필요</option><option value="all">전체</option><option value="pending">미반영</option><option value="variance">차이</option><option value="matched">확인</option><option value="skipped">건너뜀</option><option value="orphaned">연결끊김</option>
           </select>
         </label>
         <label className="grid gap-1 text-xs font-bold text-[var(--fbv4-muted)]">종류
-          <select value={typeFilter} onChange={event => { setTypeFilter(event.target.value); setVisibleCount(8); }} className="h-10 rounded-xl border border-[var(--fbv4-hairline)] px-3 text-sm text-[var(--fbv4-ink)]">
+          <select value={typeFilter} onChange={event => { setTypeFilter(event.target.value); setVisibleCount(8); }} className="h-11 rounded-xl border border-[var(--fbv4-hairline)] px-3 text-sm text-[var(--fbv4-ink)]">
             <option value="all">전체</option><option value="수입">수입</option><option value="고정지출">고정지출</option><option value="저축">저축</option>
           </select>
         </label>
@@ -166,7 +166,7 @@ export function RecurringReconciliation({ month, owner }: { month: string; owner
                 </div>
               )}
               {savingsNeedsPurpose && <p className="text-xs font-bold text-[var(--fbv4-expense)]">저축 규칙에 목적통장을 먼저 지정하세요.</p>}
-              {!done && <button type="button" onClick={() => void submit(rule, 'skip')} className="justify-self-start text-xs font-bold text-[var(--fbv4-muted)] underline">이번 달 건너뜀</button>}
+              {!done && <button type="button" onClick={() => void submit(rule, 'skip')} className="min-h-11 justify-self-start px-2 text-xs font-bold text-[var(--fbv4-muted)] underline">이번 달 건너뜀</button>}
             </article>
           );
         })}
