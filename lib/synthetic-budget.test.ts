@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Row } from '@penguin-couple/budget-ui/contracts';
+import { ENTITY_SPECS } from '@penguin-couple/budget-ui/lib/v4/entity-config';
 import { apiBridge, syntheticCommands, syntheticReads, resetSyntheticBudget } from './synthetic-budget';
 
 const MONTH = '2026-08';
@@ -114,6 +115,25 @@ describe('synthetic budget adapter', () => {
     const before = localStorage.getItem(KEY);
     await expect(syntheticCommands.reconcile(String(duplicate.id), { month: MONTH, action: 'link-existing', actualEntity: 'transactions', actualId: 'tx-2' })).rejects.toThrow();
     expect(localStorage.getItem(KEY)).toBe(before);
+  });
+
+  it.each([['monthly', 400000], ['quarterly', 1200000], ['annual', 4800000]])('uses the canonical default-zero charge fallback for %s rules', async (billing_cycle, expectedAmount) => {
+    const created = await syntheticCommands.create('recurring', MONTH, { ...ENTITY_SPECS.recurring.empty(MONTH), name: '새 고정지출', monthly_amount: 400000, billing_cycle });
+    expect(await rule(String(created.id))).toMatchObject({ reconciliation: { expectedAmount } });
+    await syntheticCommands.reconcile(String(created.id), { month: MONTH, action: 'realize', date: '2026-08-01', actualAmount: expectedAmount });
+    expect(await rule(String(created.id))).toMatchObject({ reconciliation: { state: 'matched', actualAmount: expectedAmount } });
+  });
+
+  it('releases deleted-rule claims without deleting actuals or other rules links', async () => {
+    await resolveSeed();
+    const original = (await syntheticReads.entity('recurring', MONTH, 'all')).rows.find(row => row.id === 'rule-1')!;
+    const actuals = (await syntheticReads.entity('transactions', MONTH, 'all')).rows;
+    await syntheticCommands.remove('recurring', 'rule-1');
+    const replacement = await syntheticCommands.create('recurring', MONTH, original);
+    expect(await rule(String(replacement.id))).toMatchObject({ candidateActual: { id: 'tx-2' } });
+    await syntheticCommands.reconcile(String(replacement.id), { month: MONTH, action: 'link-existing', actualEntity: 'transactions', actualId: 'tx-2' });
+    expect((await syntheticReads.entity('transactions', MONTH, 'all')).rows).toEqual(actuals);
+    expect(await rule('rule-3')).toMatchObject({ actualId: 'purpose-1', reconciliation: { state: 'matched' } });
   });
 
   it('separates occurrences by month and honors active dates, one-time, excluded and billing schedules', async () => {

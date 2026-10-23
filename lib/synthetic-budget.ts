@@ -78,7 +78,9 @@ function reconciliationRows(state: State, month: string, owner: string) {
     const entity: ActualEntity = rule.item_type === '저축' ? 'purpose' : 'transactions';
     const actual = occurrence?.state === 'linked' && occurrence.actualEntity === entity
       ? state.entities[entity].find(row => row.id === occurrence.actualId && matchingActual(rule, row, entity, month)) : undefined;
-    const expectedAmount = Number(rule.expected_charge_amount ?? rule.monthly_amount ?? 0);
+    const monthlyAmount = Math.abs(Number(rule.monthly_amount) || 0);
+    const billingMultiplier = rule.billing_cycle === 'annual' ? 12 : rule.billing_cycle === 'quarterly' ? 3 : 1;
+    const expectedAmount = Number(rule.expected_charge_amount) || monthlyAmount * billingMultiplier;
     const actualAmount = actual ? Math.abs(Number(actual.amount)) : 0;
     const difference = actual ? actualAmount - expectedAmount : 0;
     const reconciliationState = occurrence?.state === 'skipped' ? 'skipped' : occurrence?.state === 'linked'
@@ -124,7 +126,16 @@ export const syntheticCommands: BudgetCommandAdapter = {
   request: apiBridge,
   async create(kind, month, row) { const state = load(); const created = { ...row, id: `${kind}-${crypto.randomUUID()}`, month }; state.entities[kind].unshift(created); save(state); return clone(created); },
   async update(kind, id, changed) { const state = load(); const index = state.entities[kind].findIndex(row => row.id === id); if (index < 0) throw new Error('항목을 찾지 못했어요.'); state.entities[kind][index] = { ...state.entities[kind][index], ...changed, id }; save(state); return clone(state.entities[kind][index]); },
-  async remove(kind, id) { const state = load(); state.entities[kind] = state.entities[kind].filter(row => row.id !== id); save(state); },
+  async remove(kind, id) {
+    const state = clone(load());
+    state.entities[kind] = state.entities[kind].filter(row => row.id !== id);
+    if (kind === 'recurring' && state.occurrences) {
+      for (const [key, occurrence] of Object.entries(state.occurrences)) {
+        if (occurrence.ruleId === id) delete state.occurrences[key];
+      }
+    }
+    save(state);
+  },
   async setting(command, payload) { const state = load(); const group = state.settings.find(item => item.key === payload.groupKey); if (!group) throw new Error('설정 그룹을 찾지 못했어요.'); if (command === 'add') group.items.push({ id: `setting-${crypto.randomUUID()}`, label: String(payload.label), sortOrder: group.items.length, editable: true, source: 'demo' }); else if (command === 'update') { const item = group.items.find(i => i.id === payload.id); if (item) item.label = String(payload.label); } else group.items = group.items.filter(i => i.id !== payload.id); save(state); },
   async reconcile(ruleId, payload) {
     const state = clone(load());
